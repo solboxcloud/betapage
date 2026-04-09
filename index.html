@@ -1,0 +1,872 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Cloudflare 공식 파트너 | 상품 소개 및 문의</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --accent: #2563EB;
+      --accent-dark: #1D4ED8;
+      --bg: #F8FAFC;
+      --bg2: #FFFFFF;
+      --bg3: #F1F5F9;
+      --text: #0F172A;
+      --text-muted: #64748B;
+      --card-bg: #FFFFFF;
+      --card-border: #E2E8F0;
+      --radius: 14px;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Segoe UI', 'Apple SD Gothic Neo', 'Malgun Gothic', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.7;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 5%;
+      height: 64px;
+      background: rgba(255,255,255,0.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(37,99,235,0.08);
+      box-shadow: 0 1px 16px rgba(37,99,235,0.05);
+    }
+    .nav-logo { display: flex; align-items: center; gap: 10px; text-decoration: none; }
+    .nav-logo svg { width: 36px; height: 36px; }
+    .nav-logo span { font-size: 1.15rem; font-weight: 700; color: var(--text); letter-spacing: -0.3px; }
+    .nav-links { display: flex; gap: 28px; list-style: none; }
+    .nav-links a {
+      color: var(--text-muted); text-decoration: none; font-size: 0.9rem;
+      transition: color .2s;
+    }
+    .nav-links a:hover { color: var(--accent); }
+    .nav-cta {
+      background: var(--accent); color: #fff; border: none;
+      padding: 8px 20px; border-radius: 8px; font-size: 0.88rem;
+      font-weight: 600; cursor: pointer; transition: background .2s; text-decoration: none;
+    }
+    .nav-cta:hover { background: var(--accent-dark); }
+
+    /* ── HERO ── */
+    .hero {
+      min-height: 100vh;
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      text-align: center;
+      padding: 100px 5% 60px;
+      position: relative; overflow: hidden;
+      background: linear-gradient(160deg, #F0F5FF 0%, #F8FAFC 60%, #EEF2FF 100%);
+    }
+    .hero::before {
+      content: '';
+      position: absolute; inset: 0;
+      background:
+        radial-gradient(ellipse 70% 55% at 50% -5%, rgba(37,99,235,0.10) 0%, transparent 65%),
+        radial-gradient(ellipse 45% 35% at 90% 90%, rgba(29,78,216,0.06) 0%, transparent 60%);
+    }
+    .hero-badge {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: rgba(37,99,235,0.06); border: 1px solid rgba(37,99,235,0.18);
+      border-radius: 50px; padding: 6px 16px; font-size: 0.82rem; color: var(--accent);
+      margin-bottom: 28px; font-weight: 600; position: relative;
+    }
+    .hero h1 {
+      font-size: clamp(2.2rem, 5vw, 3.8rem);
+      font-weight: 800; line-height: 1.2;
+      color: var(--text); position: relative; margin-bottom: 20px;
+    }
+    .hero h1 span { color: var(--accent); }
+    .hero p {
+      font-size: clamp(1rem, 2vw, 1.2rem);
+      color: var(--text-muted); max-width: 640px;
+      position: relative; margin-bottom: 40px;
+    }
+    .hero-btns { display: flex; gap: 16px; flex-wrap: wrap; justify-content: center; position: relative; }
+    .btn-primary {
+      background: var(--accent); color: #fff; border: none;
+      padding: 14px 32px; border-radius: 10px; font-size: 1rem;
+      font-weight: 700; cursor: pointer; text-decoration: none;
+      transition: background .2s, transform .15s, box-shadow .2s;
+      display: inline-block; box-shadow: 0 4px 16px rgba(37,99,235,0.25);
+    }
+    .btn-primary:hover { background: var(--accent-dark); transform: translateY(-2px); box-shadow: 0 8px 24px rgba(37,99,235,0.30); }
+    .btn-outline {
+      background: transparent; color: var(--text);
+      border: 1.5px solid rgba(30,41,59,0.18);
+      padding: 14px 32px; border-radius: 10px; font-size: 1rem;
+      font-weight: 600; cursor: pointer; text-decoration: none;
+      transition: border-color .2s, color .2s, transform .15s;
+      display: inline-block;
+    }
+    .btn-outline:hover { border-color: var(--accent); color: var(--accent); transform: translateY(-2px); }
+
+    .hero-stats {
+      display: flex; gap: 48px; flex-wrap: wrap; justify-content: center;
+      margin-top: 64px; position: relative;
+    }
+    .stat { text-align: center; }
+    .stat-num { font-size: 2rem; font-weight: 800; color: var(--accent); }
+    .stat-label { font-size: 0.85rem; color: var(--text-muted); margin-top: 2px; }
+
+    /* ── SECTION COMMON ── */
+    section { padding: 90px 5%; }
+    .section-label {
+      display: inline-block; font-size: 0.78rem; font-weight: 700;
+      color: var(--accent); letter-spacing: 1.5px; text-transform: uppercase;
+      margin-bottom: 12px;
+    }
+    .section-title {
+      font-size: clamp(1.7rem, 3.5vw, 2.6rem);
+      font-weight: 800; color: var(--text); line-height: 1.25; margin-bottom: 16px;
+    }
+    .section-title span { color: var(--accent); }
+    .section-sub { color: var(--text-muted); font-size: 1.05rem; max-width: 560px; }
+
+    /* ── PRODUCTS ── */
+    #products { background: var(--bg2); }
+    .products-header { text-align: center; margin-bottom: 56px; }
+    .products-header .section-sub { margin: 0 auto; }
+
+    .products-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 24px; max-width: 1200px; margin: 0 auto;
+    }
+    .product-card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: var(--radius);
+      padding: 32px 28px;
+      transition: border-color .25s, transform .2s, box-shadow .25s;
+      position: relative; overflow: hidden;
+    }
+    .product-card::before {
+      content: '';
+      position: absolute; top: 0; left: 0; right: 0; height: 3px;
+      background: linear-gradient(90deg, var(--accent), #60A5FA);
+      opacity: 0; transition: opacity .25s;
+    }
+    .product-card:hover { border-color: var(--accent); transform: translateY(-4px); box-shadow: 0 12px 40px rgba(37,99,235,0.10); }
+    .product-card:hover::before { opacity: 1; }
+
+    .product-icon {
+      width: 52px; height: 52px; border-radius: 12px;
+      background: rgba(37,99,235,0.06); border: 1px solid rgba(37,99,235,0.12);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.6rem; margin-bottom: 20px;
+    }
+    .product-card h3 { font-size: 1.15rem; font-weight: 700; color: var(--text); margin-bottom: 10px; }
+    .product-card p { font-size: 0.9rem; color: var(--text-muted); line-height: 1.65; margin-bottom: 18px; }
+    .product-tags { display: flex; gap: 8px; flex-wrap: wrap; }
+    .tag {
+      font-size: 0.73rem; font-weight: 600; padding: 3px 10px;
+      border-radius: 50px; border: 1px solid rgba(37,99,235,0.15);
+      color: var(--accent); background: rgba(37,99,235,0.06);
+    }
+
+    /* ── WHY ── */
+    #why { background: var(--bg); }
+    .why-inner {
+      max-width: 1200px; margin: 0 auto;
+      display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: center;
+    }
+    .why-visual { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    .why-metric {
+      background: var(--card-bg); border: 1px solid var(--card-border);
+      border-radius: var(--radius); padding: 24px; text-align: center;
+      box-shadow: 0 2px 12px rgba(37,99,235,0.06);
+    }
+    .why-metric .num { font-size: 2rem; font-weight: 800; color: var(--accent); }
+    .why-metric .label { font-size: 0.82rem; color: var(--text-muted); margin-top: 4px; }
+    .why-metric.featured {
+      grid-column: span 2;
+      background: rgba(37,99,235,0.04); border-color: rgba(37,99,235,0.20);
+    }
+    .why-metric.featured .num { font-size: 2.6rem; }
+    .why-list { list-style: none; margin-top: 28px; display: flex; flex-direction: column; gap: 16px; }
+    .why-list li { display: flex; align-items: flex-start; gap: 14px; }
+    .why-check {
+      width: 24px; height: 24px; border-radius: 50%;
+      background: rgba(37,99,235,0.08); border: 1px solid rgba(37,99,235,0.20);
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0; margin-top: 2px; font-size: 0.75rem; color: var(--accent);
+    }
+    .why-list li p { color: var(--text-muted); font-size: 0.93rem; }
+    .why-list li strong { color: var(--text); }
+
+    /* ── INQUIRY ── */
+    #inquiry { background: var(--bg2); }
+    .inquiry-inner {
+      max-width: 900px; margin: 0 auto;
+      display: grid; grid-template-columns: 1fr 1.4fr; gap: 56px; align-items: start;
+    }
+    .inquiry-info h2 { font-size: 1.9rem; font-weight: 800; color: var(--text); margin-bottom: 14px; }
+    .inquiry-info p { color: var(--text-muted); font-size: 0.95rem; margin-bottom: 32px; }
+    .contact-items { display: flex; flex-direction: column; gap: 20px; }
+    .contact-item { display: flex; gap: 14px; align-items: flex-start; }
+    .contact-icon {
+      width: 40px; height: 40px; border-radius: 10px;
+      background: rgba(37,99,235,0.06); border: 1px solid rgba(37,99,235,0.12);
+      display: flex; align-items: center; justify-content: center; font-size: 1.1rem;
+      flex-shrink: 0;
+    }
+    .contact-item h4 { font-size: 0.85rem; font-weight: 700; color: var(--text); margin-bottom: 2px; }
+    .contact-item p { font-size: 0.83rem; color: var(--text-muted); }
+
+    .inquiry-form {
+      background: var(--card-bg); border: 1px solid var(--card-border);
+      border-radius: var(--radius); padding: 36px 32px;
+      box-shadow: 0 4px 28px rgba(37,99,235,0.06);
+    }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    .form-group { display: flex; flex-direction: column; gap: 6px; margin-bottom: 16px; }
+    .form-group label { font-size: 0.83rem; color: var(--text-muted); font-weight: 600; }
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      background: var(--bg);
+      border: 1px solid rgba(37,99,235,0.12);
+      border-radius: 8px; padding: 11px 14px;
+      color: var(--text); font-size: 0.9rem; outline: none;
+      transition: border-color .2s, box-shadow .2s;
+      font-family: inherit;
+    }
+    .form-group input:focus,
+    .form-group select:focus,
+    .form-group textarea:focus { border-color: var(--accent); box-shadow: 0 0 0 3px rgba(37,99,235,0.08); }
+    .form-group textarea { resize: vertical; min-height: 110px; }
+    .form-group select option { background: #fff; color: var(--text); }
+    .form-group input::placeholder,
+    .form-group textarea::placeholder { color: rgba(30,41,59,0.3); }
+    .form-submit {
+      width: 100%; padding: 14px; background: var(--accent); color: #fff;
+      border: none; border-radius: 10px; font-size: 1rem; font-weight: 700;
+      cursor: pointer; transition: background .2s, transform .15s, box-shadow .2s;
+      font-family: inherit; box-shadow: 0 4px 16px rgba(37,99,235,0.20);
+    }
+    .form-submit:hover { background: var(--accent-dark); transform: translateY(-2px); box-shadow: 0 8px 24px rgba(37,99,235,0.28); }
+    .form-note { font-size: 0.78rem; color: var(--text-muted); text-align: center; margin-top: 12px; }
+
+    /* ── GEO DISTRIBUTION ── */
+    .geo-grid {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 4px;
+    }
+    .geo-item {
+      background: var(--bg); border: 1px solid var(--card-border);
+      border-radius: 8px; padding: 10px 12px;
+      display: flex; align-items: center; justify-content: space-between; gap: 8px;
+    }
+    .geo-label { font-size: 0.83rem; color: var(--text); font-weight: 500; }
+    .geo-select {
+      background: var(--bg2); border: 1px solid rgba(37,99,235,0.20);
+      border-radius: 6px; padding: 5px 8px; font-size: 0.85rem;
+      color: var(--text); outline: none; cursor: pointer; font-family: inherit;
+      transition: border-color .2s;
+    }
+    .geo-select:focus { border-color: var(--accent); }
+    .geo-total {
+      margin-top: 8px; font-size: 0.82rem; font-weight: 600;
+      color: #16a34a; text-align: right;
+    }
+    .geo-total.over { color: #dc2626; }
+    .geo-total.under { color: var(--text-muted); }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--bg3); border-top: 1px solid rgba(37,99,235,0.08);
+      padding: 48px 5% 32px;
+    }
+    .footer-inner {
+      max-width: 1200px; margin: 0 auto;
+      display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 40px; margin-bottom: 40px;
+    }
+    .footer-brand p { color: var(--text-muted); font-size: 0.85rem; margin-top: 12px; max-width: 260px; }
+    .footer-col h4 { font-size: 0.85rem; font-weight: 700; color: var(--text); margin-bottom: 16px; }
+    .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+    .footer-col ul li a { color: var(--text-muted); text-decoration: none; font-size: 0.83rem; transition: color .2s; }
+    .footer-col ul li a:hover { color: var(--accent); }
+    .footer-bottom {
+      max-width: 1200px; margin: 0 auto;
+      border-top: 1px solid rgba(37,99,235,0.08); padding-top: 24px;
+      display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px;
+    }
+    .footer-bottom p { font-size: 0.8rem; color: var(--text-muted); }
+
+    /* ── TOAST ── */
+    .toast {
+      position: fixed; top: 50%; left: 50%; z-index: 999;
+      background: #f0fdf4; border: 1px solid #4ade80;
+      color: #16a34a; padding: 24px 40px; border-radius: 14px;
+      font-size: 1rem; font-weight: 600; text-align: center;
+      box-shadow: 0 8px 40px rgba(0,0,0,0.15);
+      transform: translate(-50%, -50%) scale(0.85); opacity: 0;
+      transition: all .35s cubic-bezier(.34,1.56,.64,1);
+    }
+    .toast.show { transform: translate(-50%, -50%) scale(1); opacity: 1; }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 900px) {
+      .why-inner { grid-template-columns: 1fr; }
+      .why-visual { order: -1; }
+      .inquiry-inner { grid-template-columns: 1fr; gap: 36px; }
+      .footer-inner { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 600px) {
+      .nav-links { display: none; }
+      .form-row { grid-template-columns: 1fr; }
+      .footer-inner { grid-template-columns: 1fr; }
+      .hero-stats { gap: 28px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a class="nav-logo" href="#">
+    <svg viewBox="0 0 100 100" fill="none">
+      <path d="M77 58c1.7-5.8-0.6-10-6.5-11.5L29 36.5l-1 4 35 5c3 0.5 5 2.5 4.5 5.5S64 55 61 55H23l-1 4 52 0.5c4 0 4.5 2.5 3.5 5.5S74 68 71 68H18l-1 4 55 0.5c5.5 0 6.7-8.7 5-14.5z" fill="#F6821F"/>
+    </svg>
+    <span>Cloudflare Korea</span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#products">상품</a></li>
+    <li><a href="#why">왜 Cloudflare?</a></li>
+    <li><a href="#inquiry">문의하기</a></li>
+  </ul>
+  <a class="nav-cta" href="#inquiry">무료 상담</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-badge">
+    <span>🌐</span> 전 세계 330개+ 도시, 국내 최고 파트너
+  </div>
+  <h1>더 빠르고 안전한 인터넷을<br/><span>Cloudflare</span>로 경험하세요</h1>
+  <p>CDN, DDoS 방어, Zero Trust 보안, Workers AI까지 — 단 하나의 플랫폼으로 글로벌 수준의 인프라를 구현합니다.</p>
+  <div class="hero-btns">
+    <a class="btn-primary" href="#products">상품 살펴보기</a>
+    <a class="btn-outline" href="#inquiry">전문가와 상담하기</a>
+  </div>
+  <div class="hero-stats">
+    <div class="stat">
+      <div class="stat-num">330+</div>
+      <div class="stat-label">글로벌 데이터센터</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">1/5초</div>
+      <div class="stat-label">평균 응답 개선율</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">200만+</div>
+      <div class="stat-label">고객사</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">99.99%</div>
+      <div class="stat-label">업타임 SLA</div>
+    </div>
+  </div>
+</section>
+
+<!-- PRODUCTS -->
+<section id="products">
+  <div class="products-header">
+    <div class="section-label">Products</div>
+    <h2 class="section-title">Cloudflare <span>주요 상품</span></h2>
+    <p class="section-sub">성능·보안·개발을 하나의 플랫폼에서 — 필요한 만큼만 선택하세요</p>
+  </div>
+  <div class="products-grid">
+
+    <div class="product-card">
+      <div class="product-icon">⚡</div>
+      <h3>CDN & 성능 최적화</h3>
+      <p>Cloudflare의 글로벌 CDN은 정적·동적 콘텐츠를 사용자와 가장 가까운 엣지 서버에서 제공해 로딩 속도를 획기적으로 줄여줍니다. Argo Smart Routing으로 최적 경로를 자동 선택합니다.</p>
+      <div class="product-tags">
+        <span class="tag">CDN</span>
+        <span class="tag">Argo Routing</span>
+        <span class="tag">이미지 최적화</span>
+        <span class="tag">HTTP/3</span>
+      </div>
+    </div>
+
+    <div class="product-card">
+      <div class="product-icon">🛡️</div>
+      <h3>DDoS 방어</h3>
+      <p>초대형 DDoS 공격도 자동으로 탐지·차단합니다. L3/L4/L7 계층 전반을 커버하며 공격량에 비례한 추가 비용 없이 무제한 방어를 제공합니다.</p>
+      <div class="product-tags">
+        <span class="tag">L3/L4/L7</span>
+        <span class="tag">자동 완화</span>
+        <span class="tag">무제한 방어</span>
+      </div>
+    </div>
+
+    <div class="product-card">
+      <div class="product-icon">🔥</div>
+      <h3>웹 방화벽 (WAF)</h3>
+      <p>OWASP Top 10, 제로데이 취약점을 포함한 수천 개의 규칙으로 웹 애플리케이션을 보호합니다. 커스텀 규칙 생성과 ML 기반 이상 탐지로 정교한 공격도 막아냅니다.</p>
+      <div class="product-tags">
+        <span class="tag">OWASP</span>
+        <span class="tag">커스텀 규칙</span>
+        <span class="tag">ML 탐지</span>
+        <span class="tag">봇 관리</span>
+      </div>
+    </div>
+
+    <div class="product-card">
+      <div class="product-icon">🌐</div>
+      <h3>DNS & 도메인 관리</h3>
+      <p>세계 최고 수준의 응답 속도를 자랑하는 권위 DNS 서버. DNSSEC, Anycast 라우팅, 분석 대시보드를 통해 도메인을 안정적으로 관리하세요.</p>
+      <div class="product-tags">
+        <span class="tag">권위 DNS</span>
+        <span class="tag">DNSSEC</span>
+        <span class="tag">Anycast</span>
+      </div>
+    </div>
+
+    <div class="product-card">
+      <div class="product-icon">🔒</div>
+      <h3>Zero Trust 보안</h3>
+      <p>Cloudflare Access와 ZTNA로 VPN 없이도 내부 애플리케이션을 안전하게 보호합니다. SSO, MFA 연동과 세분화된 접근 정책으로 기업 보안을 강화하세요.</p>
+      <div class="product-tags">
+        <span class="tag">ZTNA</span>
+        <span class="tag">Access</span>
+        <span class="tag">SSO/MFA</span>
+        <span class="tag">SASE</span>
+      </div>
+    </div>
+
+    <div class="product-card">
+      <div class="product-icon">⚙️</div>
+      <h3>Cloudflare Workers</h3>
+      <p>서버리스 엣지 컴퓨팅 플랫폼. 전 세계 330+개 엣지에서 JavaScript/Rust/Python 코드를 실행하고 KV, R2, D1으로 데이터를 저장하세요. 콜드 스타트 없는 초고속 실행.</p>
+      <div class="product-tags">
+        <span class="tag">Serverless</span>
+        <span class="tag">Edge Computing</span>
+        <span class="tag">KV/R2/D1</span>
+        <span class="tag">AI Gateway</span>
+      </div>
+    </div>
+
+    <div class="product-card">
+      <div class="product-icon">🌊</div>
+      <h3>Cloudflare Spectrum</h3>
+      <p>HTTP/HTTPS를 넘어 모든 TCP/UDP 기반 애플리케이션까지 DDoS 방어와 프록시 기능을 확장합니다. 게임 서버, 이메일, FTP, SSH 등 비웹 서비스도 Cloudflare 네트워크로 보호하세요.</p>
+      <div class="product-tags">
+        <span class="tag">TCP/UDP 보호</span>
+        <span class="tag">게임 서버</span>
+        <span class="tag">메일 서버</span>
+        <span class="tag">DDoS 방어</span>
+        <span class="tag">IP 은폐</span>
+      </div>
+    </div>
+
+    <div class="product-card">
+      <div class="product-icon">⚖️</div>
+      <h3>로드 밸런싱</h3>
+      <p>Cloudflare Load Balancer로 글로벌 트래픽을 서버 상태에 따라 지능적으로 분산합니다. 실시간 헬스체크로 장애 서버를 자동 감지하고, 페일오버를 통해 서비스 중단 없이 트래픽을 우회합니다.</p>
+      <div class="product-tags">
+        <span class="tag">글로벌 LB</span>
+        <span class="tag">헬스체크</span>
+        <span class="tag">페일오버</span>
+        <span class="tag">지오 라우팅</span>
+      </div>
+    </div>
+
+    <div class="product-card">
+      <div class="product-icon">📦</div>
+      <h3>R2 오브젝트 스토리지</h3>
+      <p>S3 호환 오브젝트 스토리지로 이그레스 비용이 없습니다. 대용량 파일 저장·배포를 AWS S3 대비 훨씬 저렴하게 운영하고 Workers와 완벽하게 연동됩니다.</p>
+      <div class="product-tags">
+        <span class="tag">S3 호환</span>
+        <span class="tag">무료 이그레스</span>
+        <span class="tag">Workers 연동</span>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- WHY CLOUDFLARE -->
+<section id="why">
+  <div class="why-inner">
+    <div>
+      <div class="section-label">Why Cloudflare</div>
+      <h2 class="section-title">왜 수백만 기업이<br/><span>Cloudflare</span>를 선택할까요?</h2>
+      <p class="section-sub">단순한 CDN이 아닙니다. 보안·성능·AI를 아우르는 글로벌 통합 인터넷 플랫폼입니다.</p>
+      <ul class="why-list">
+        <li>
+          <div class="why-check">✓</div>
+          <p><strong>포춘 500대 기업의 35%가 선택</strong><br/>수백만 사용자와 300만 명 이상의 개발자가 신뢰하는 검증된 인프라</p>
+        </li>
+        <li>
+          <div class="why-check">✓</div>
+          <p><strong>13,000개 이상의 네트워크와 직접 피어링</strong><br/>국내 KT·SK 포함 — 한국 사용자에게 최적화된 초저지연 응답</p>
+        </li>
+        <li>
+          <div class="why-check">✓</div>
+          <p><strong>매일 2,270억 건의 사이버 위협 자동 차단</strong><br/>공격 규모에 무관한 정액 요금으로 예측 가능한 보안 비용</p>
+        </li>
+        <li>
+          <div class="why-check">✓</div>
+          <p><strong>SASE / SSE · SASE 분야 Gartner 리더</strong><br/>애플리케이션 보안부터 Zero Trust, Workers AI까지 단일 플랫폼</p>
+        </li>
+        <li>
+          <div class="why-check">✓</div>
+          <p><strong>1,300+ 글로벌 파트너 · Accenture · Kyndryl 협력</strong><br/>공인 파트너사의 전담 엔지니어가 도입부터 운영까지 함께합니다</p>
+        </li>
+      </ul>
+    </div>
+    <div class="why-visual">
+      <div class="why-metric featured">
+        <div class="num">405 Tbps</div>
+        <div class="label">글로벌 네트워크 처리 용량 (지속 성장 중)</div>
+      </div>
+      <div class="why-metric">
+        <div class="num">335+</div>
+        <div class="label">125개국 네트워크 도시</div>
+      </div>
+      <div class="why-metric">
+        <div class="num">180+</div>
+        <div class="label">GPU 기반 AI 추론 거점</div>
+      </div>
+      <div class="why-metric">
+        <div class="num">~20%</div>
+        <div class="label">전 세계 웹 트래픽 처리</div>
+      </div>
+      <div class="why-metric">
+        <div class="num">2,270억</div>
+        <div class="label">매일 차단하는 사이버 위협</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- INQUIRY -->
+<section id="inquiry">
+  <div class="inquiry-inner">
+    <div class="inquiry-info">
+      <div class="section-label">Contact Us</div>
+      <h2>전문가와<br/>직접 상담하세요</h2>
+      <p>Cloudflare 공인 파트너사의 엔지니어가 귀사 환경에 맞는 최적의 솔루션을 제안해 드립니다.</p>
+      <div class="contact-items">
+        <div class="contact-item">
+          <div class="contact-icon">📞</div>
+          <div>
+            <h4>전화 상담</h4>
+            <p>1668-2783 (평일 09:00~18:00)</p>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-icon">✉️</div>
+          <div>
+            <h4>이메일 문의</h4>
+            <p>bscloud@solbox.com</p>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-icon">✈️</div>
+          <div>
+            <h4>텔레그램 채널</h4>
+            <p><a href="https://t.me/+uSXMG8ZmumI2YmY1" target="_blank" style="color:var(--accent);text-decoration:none;">@CloudflareKorea</a></p>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-icon">📍</div>
+          <div>
+            <h4>오피스</h4>
+            <p>서울특별시 강남구 테헤란로 124, 10층(역삼동,삼원타워)</p>
+            <iframe
+              src="https://maps.google.com/maps?q=서울특별시+강남구+테헤란로+124+삼원타워&hl=ko&output=embed&z=16"
+              style="width:100%;height:140px;border:0;border-radius:10px;margin-top:10px;display:block;"
+              allowfullscreen loading="lazy" referrerpolicy="no-referrer-when-downgrade">
+            </iframe>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <form class="inquiry-form" id="inquiryForm" onsubmit="handleSubmit(event)">
+      <div class="form-row">
+        <div class="form-group">
+          <label for="name">담당자 성함 *</label>
+          <input type="text" id="name" placeholder="홍길동" required />
+        </div>
+        <div class="form-group">
+          <label for="company">회사명 *</label>
+          <input type="text" id="company" placeholder="(주)예시기업" required />
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label for="email">업무 이메일 *</label>
+          <input type="email" id="email" placeholder="name@company.com" required />
+        </div>
+        <div class="form-group">
+          <label for="phone">연락처</label>
+          <input type="tel" id="phone" placeholder="010-0000-0000" />
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="domain">서비스 도메인 개수 *</label>
+        <select id="domain" required>
+          <option value="" disabled selected>도메인 개수를 선택해 주세요</option>
+          <option>1 ~ 5개</option>
+          <option>6 ~ 10개</option>
+          <option>11 ~ 20개</option>
+          <option>21 ~ 50개</option>
+          <option>50개 이상</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="product">관심 상품 *</label>
+        <select id="product" required>
+          <option value="" disabled selected>상품을 선택해 주세요</option>
+          <option>CDN & 성능 최적화</option>
+          <option>DDoS 방어</option>
+          <option>웹 방화벽 (WAF)</option>
+          <option>Zero Trust / SASE</option>
+          <option>Cloudflare Workers</option>
+          <option>Cloudflare Spectrum</option>
+          <option>R2 오브젝트 스토리지</option>
+          <option>Enterprise 패키지 (복합)</option>
+          <option>기타</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="traffic">월 평균 트래픽 규모</label>
+        <select id="traffic">
+          <option value="" disabled selected>트래픽 규모를 선택해 주세요</option>
+          <option>1TB 미만</option>
+          <option>1TB ~ 10TB</option>
+          <option>10TB ~ 100TB</option>
+          <option>100TB 이상</option>
+          <option>아직 파악 못함</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>지역별 트래픽 비율 (Geo Distribution) <span style="font-weight:400;color:var(--text-muted);">— 합계 100%</span></label>
+        <div class="geo-grid">
+          <div class="geo-item">
+            <span class="geo-label">🇰🇷 대한민국</span>
+            <select id="geo-kr" class="geo-select" onchange="updateGeoTotal()">
+              <option value="0">0%</option>
+              <option value="10">10%</option>
+              <option value="20">20%</option>
+              <option value="30">30%</option>
+              <option value="40">40%</option>
+              <option value="50">50%</option>
+              <option value="60">60%</option>
+              <option value="70" selected>70%</option>
+              <option value="80">80%</option>
+              <option value="90">90%</option>
+              <option value="100">100%</option>
+            </select>
+          </div>
+          <div class="geo-item">
+            <span class="geo-label">🌎 북미</span>
+            <select id="geo-na" class="geo-select" onchange="updateGeoTotal()">
+              <option value="0">0%</option>
+              <option value="10" selected>10%</option>
+              <option value="20">20%</option>
+              <option value="30">30%</option>
+              <option value="40">40%</option>
+              <option value="50">50%</option>
+              <option value="60">60%</option>
+              <option value="70">70%</option>
+              <option value="80">80%</option>
+              <option value="90">90%</option>
+              <option value="100">100%</option>
+            </select>
+          </div>
+          <div class="geo-item">
+            <span class="geo-label">🌏 아시아 (기타)</span>
+            <select id="geo-asia" class="geo-select" onchange="updateGeoTotal()">
+              <option value="0">0%</option>
+              <option value="10" selected>10%</option>
+              <option value="20">20%</option>
+              <option value="30">30%</option>
+              <option value="40">40%</option>
+              <option value="50">50%</option>
+              <option value="60">60%</option>
+              <option value="70">70%</option>
+              <option value="80">80%</option>
+              <option value="90">90%</option>
+              <option value="100">100%</option>
+            </select>
+          </div>
+          <div class="geo-item">
+            <span class="geo-label">🌍 유럽</span>
+            <select id="geo-eu" class="geo-select" onchange="updateGeoTotal()">
+              <option value="0">0%</option>
+              <option value="10" selected>10%</option>
+              <option value="20">20%</option>
+              <option value="30">30%</option>
+              <option value="40">40%</option>
+              <option value="50">50%</option>
+              <option value="60">60%</option>
+              <option value="70">70%</option>
+              <option value="80">80%</option>
+              <option value="90">90%</option>
+              <option value="100">100%</option>
+            </select>
+          </div>
+        </div>
+        <div id="geo-total" class="geo-total">합계: 100% ✓</div>
+      </div>
+      <div class="form-group">
+        <label for="message">문의 내용 *</label>
+        <textarea id="message" placeholder="현재 인프라 환경, 겪고 있는 문제, 원하시는 내용을 자유롭게 작성해 주세요." required></textarea>
+      </div>
+      <button type="submit" class="form-submit">문의 보내기 →</button>
+      <p class="form-note">수집된 정보는 상담 목적으로만 사용되며, 제3자에게 제공되지 않습니다.</p>
+    </form>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <a class="nav-logo" href="#" style="text-decoration:none;">
+        <svg viewBox="0 0 100 100" fill="none" width="32" height="32">
+          <path d="M77 58c1.7-5.8-0.6-10-6.5-11.5L29 36.5l-1 4 35 5c3 0.5 5 2.5 4.5 5.5S64 55 61 55H23l-1 4 52 0.5c4 0 4.5 2.5 3.5 5.5S74 68 71 68H18l-1 4 55 0.5c5.5 0 6.7-8.7 5-14.5z" fill="#F6821F"/>
+        </svg>
+        <span style="font-size:1rem;font-weight:700;color:var(--text);">Cloudflare Korea</span>
+      </a>
+      <p>더 나은 인터넷을 만들기 위해 Cloudflare와 함께합니다. 빠르고, 안전하고, 안정적인 인터넷 경험을 모든 기업에.</p>
+    </div>
+    <div class="footer-col">
+      <h4>상품</h4>
+      <ul>
+        <li><a href="#products">CDN & 성능</a></li>
+        <li><a href="#products">DDoS 방어</a></li>
+        <li><a href="#products">WAF</a></li>
+        <li><a href="#products">Zero Trust</a></li>
+        <li><a href="#products">Workers</a></li>
+        <li><a href="#products">R2 스토리지</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>문의</h4>
+      <ul>
+        <li><a href="#inquiry">온라인 문의</a></li>
+        <li><a href="#inquiry">전화 상담</a></li>
+        <li><a href="https://t.me/+uSXMG8ZmumI2YmY1" target="_blank">텔레그램</a></li>
+        <li><a href="#inquiry">오시는 길</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2026 Cloudflare Korea. All rights reserved. Cloudflare®는 Cloudflare, Inc.의 등록 상표입니다.</p>
+  </div>
+</footer>
+
+<!-- TOAST -->
+<div class="toast" id="toast">✅ 문의가 접수되었습니다! 1~2 영업일 내로 연락드리겠습니다.</div>
+
+<script>
+  function updateGeoTotal() {
+    const ids = ['geo-kr', 'geo-na', 'geo-asia', 'geo-eu'];
+    const total = ids.reduce((sum, id) => sum + parseInt(document.getElementById(id).value || 0), 0);
+    const el = document.getElementById('geo-total');
+    if (total === 100) {
+      el.textContent = `합계: ${total}% ✓`; el.className = 'geo-total';
+    } else if (total > 100) {
+      el.textContent = `합계: ${total}% — 100%를 초과했습니다`; el.className = 'geo-total over';
+    } else {
+      el.textContent = `합계: ${total}% — ${100 - total}% 남았습니다`; el.className = 'geo-total under';
+    }
+  }
+
+  // ← 슬랙 Webhook URL을 여기에 입력하세요
+  const SLACK_WEBHOOK_URL = '%%SLACK_WEBHOOK_URL%%';
+
+  function handleSubmit(e) {
+    e.preventDefault();
+    const form = e.target;
+    const toast = document.getElementById('toast');
+
+    const name    = document.getElementById('name').value;
+    const company = document.getElementById('company').value;
+    const email   = document.getElementById('email').value;
+    const phone   = document.getElementById('phone').value || '미입력';
+    const domain  = document.getElementById('domain').value;
+    const product = document.getElementById('product').value;
+    const traffic = document.getElementById('traffic').value || '미입력';
+    const message = document.getElementById('message').value;
+    const geoKr   = document.getElementById('geo-kr').value;
+    const geoNa   = document.getElementById('geo-na').value;
+    const geoAsia = document.getElementById('geo-asia').value;
+    const geoEu   = document.getElementById('geo-eu').value;
+
+    const payload = {
+      blocks: [
+        {
+          type: 'header',
+          text: { type: 'plain_text', text: '📬 새 문의가 접수됐습니다!', emoji: true }
+        },
+        {
+          type: 'section',
+          fields: [
+            { type: 'mrkdwn', text: `*담당자*\n${name}` },
+            { type: 'mrkdwn', text: `*회사명*\n${company}` },
+            { type: 'mrkdwn', text: `*이메일*\n${email}` },
+            { type: 'mrkdwn', text: `*연락처*\n${phone}` },
+          ]
+        },
+        {
+          type: 'section',
+          fields: [
+            { type: 'mrkdwn', text: `*관심 상품*\n${product}` },
+            { type: 'mrkdwn', text: `*도메인 개수*\n${domain}` },
+            { type: 'mrkdwn', text: `*월 트래픽*\n${traffic}` },
+          ]
+        },
+        {
+          type: 'section',
+          text: { type: 'mrkdwn', text: `*지역별 트래픽 비율*\n🇰🇷 대한민국 ${geoKr}%  |  🌎 북미 ${geoNa}%  |  🌏 아시아(기타) ${geoAsia}%  |  🌍 유럽 ${geoEu}%` }
+        },
+        {
+          type: 'section',
+          text: { type: 'mrkdwn', text: `*문의 내용*\n${message}` }
+        },
+        { type: 'divider' }
+      ]
+    };
+
+    fetch(SLACK_WEBHOOK_URL, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+      body: `payload=${encodeURIComponent(JSON.stringify(payload))}`
+    }).catch(() => {}); // CORS 오류 무시 (데이터는 정상 전송됨)
+
+    toast.classList.add('show');
+    form.reset();
+    setTimeout(() => toast.classList.remove('show'), 4500);
+  }
+
+  // Smooth reveal on scroll
+  const observer = new IntersectionObserver(
+    (entries) => entries.forEach(el => {
+      if (el.isIntersecting) { el.target.style.opacity = '1'; el.target.style.transform = 'translateY(0)'; }
+    }),
+    { threshold: 0.08 }
+  );
+  document.querySelectorAll('.product-card, .pricing-card, .why-metric').forEach(el => {
+    el.style.opacity = '0';
+    el.style.transform = 'translateY(24px)';
+    el.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+    observer.observe(el);
+  });
+</script>
+</body>
+</html>
