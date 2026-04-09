@@ -15,10 +15,6 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Inject Worker URL
-        run: |
-          sed -i "s|%%WORKER_URL%%|${{ secrets.WORKER_URL }}|g" index.html
-
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v4
         with:
