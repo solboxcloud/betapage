@@ -3,7 +3,11 @@
     "allow": [
       "WebFetch(domain:www.cloudways.com)",
       "WebSearch",
-      "Bash(git config:*)"
+      "Bash(git config:*)",
+      "WebFetch(domain:solboxcloud.github.io)",
+      "WebFetch(domain:www.cloudflare.com)",
+      "WebFetch(domain:cf-assets.www.cloudflare.com)",
+      "Bash(curl -s \"https://cf-assets.www.cloudflare.com/dzlvafdwdttg/5hEMO0prBW3wDvchZU0iBZ/8e05bb4c55f8906e58d09dbc861c0f22/CF_logo_horizontal_singlecolor_wht.svg\")"
     ]
   }
 }
