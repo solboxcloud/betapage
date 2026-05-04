@@ -1,8 +1,18 @@
 export default {
   async fetch(request, env) {
 
+    const origin = request.headers.get('Origin') || '';
+
+    const allowedOrigins = [
+      'https://solboxcloud.github.io',
+      'http://localhost',
+      'http://127.0.0.1',
+    ];
+
+    const corsOrigin = allowedOrigins.includes(origin) ? origin : 'null';
+
     const corsHeaders = {
-      'Access-Control-Allow-Origin': '*',
+      'Access-Control-Allow-Origin': corsOrigin,
       'Access-Control-Allow-Methods': 'POST, OPTIONS',
       'Access-Control-Allow-Headers': 'Content-Type, X-API-Key',
     };
