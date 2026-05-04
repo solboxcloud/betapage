@@ -1025,6 +1025,12 @@
           type: 'section',
           text: { type: 'mrkdwn', text: `*문의 내용*\n${message}` }
         },
+        {
+          type: 'context',
+          elements: [
+            { type: 'mrkdwn', text: `🌐 접수 출처: <${window.location.href}|${window.location.host}>` }
+          ]
+        },
         { type: 'divider' }
       ]
     };
