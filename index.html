@@ -1037,7 +1037,10 @@
 
     fetch(WORKER_URL, {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
+      headers: {
+        'Content-Type': 'application/json',
+        'X-API-Key': 'spd_8Kf2mN9pQ4rT7wX1yZ3vB5hE'
+      },
       body: JSON.stringify(payload)
     })
     .then(res => res.json())
